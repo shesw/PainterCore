@@ -194,6 +194,22 @@ Component({
         },
       });
     },
+
+    // interaction
+    onBindTap(e) {
+      this.triggerEvent('onEventSend', this._packEvent(e, 'tap', 'bind'));
+    },
+    onBindLongPress(e) {
+      this.triggerEvent('onEventSend', this._packEvent(e, 'longpress', 'bind'));
+    },
+    _packEvent(e, type, mode) {
+      return {
+        x: e.detail.x,
+        y: e.detail.y,
+        type: type,
+        mode: mode,
+      };
+    },
   },
 });
 
