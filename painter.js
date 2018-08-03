@@ -200,18 +200,21 @@ Component({
       this.triggerEvent('onEventSend', this._packEvent(e, 'bind'));
     },
 
-    onCatch(e) {
-      this.triggerEvent('onEventSend', this._packEvent(e, 'catch'));
-    },
-
     _packEvent(e, mode) {
-      const swt = e.type.startsWith('touch');
-      return {
-        x: swt ? e.changedTouches[0].clientX : e.detail.x,
-        y: swt ? e.changedTouches[0].clientY : e.detail.y,
+      if (e.type === 'touchstart') {
+        this.touchstart = {
+          x: e.touches[0].x,
+          y: e.touches[0].y,
+        };
+      }
+      const swt = e.type === 'touchmove';
+      const res = {
+        x: swt ? e.touches[0].x : this.touchstart.x,
+        y: swt ? e.touches[0].y : this.touchstart.y,
         type: e.type,
         mode: mode,
       };
+      return res;
     },
   },
 });
