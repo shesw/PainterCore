@@ -1,1 +1,2 @@
-<canvas canvas-id="k-canvas" style="{{painterStyle}}{{customStyle}}" bind:tap="onBindTap" bind:longpress="onBindLongPress"/>
+<canvas canvas-id="k-canvas" style="{{painterStyle}}{{customStyle}}" bind:tap="onBind" bind:longpress="onBind" bind:touchstart="onBind"
+  bind:touchmove="onBind" bind:touchend="onBind" />

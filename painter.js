@@ -196,17 +196,20 @@ Component({
     },
 
     // interaction
-    onBindTap(e) {
-      this.triggerEvent('onEventSend', this._packEvent(e, 'tap', 'bind'));
+    onBind(e) {
+      this.triggerEvent('onEventSend', this._packEvent(e, 'bind'));
     },
-    onBindLongPress(e) {
-      this.triggerEvent('onEventSend', this._packEvent(e, 'longpress', 'bind'));
+
+    onCatch(e) {
+      this.triggerEvent('onEventSend', this._packEvent(e, 'catch'));
     },
-    _packEvent(e, type, mode) {
+
+    _packEvent(e, mode) {
+      const swt = e.type.startsWith('touch');
       return {
-        x: e.detail.x,
-        y: e.detail.y,
-        type: type,
+        x: swt ? e.changedTouches[0].clientX : e.detail.x,
+        y: swt ? e.changedTouches[0].clientY : e.detail.y,
+        type: e.type,
         mode: mode,
       };
     },
