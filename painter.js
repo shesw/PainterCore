@@ -1,6 +1,5 @@
 import Pen from './lib/pen';
 import Downloader from './lib/downloader';
-import Pac from '../../palette/pac';
 import KooHandler from '../../components/painter/lib/koo-handler';
 
 const util = require('./lib/util');
@@ -66,9 +65,9 @@ Component({
         return;
       }
 
-      if (this.properties.palette.name) {
-        const pac = new Pac();
-        this.properties.palette = pac.getPalette(this.properties.palette.name).palette();
+      if (this.properties.palette.path) {
+        const Card = require(`../..${this.properties.palette.path}`);
+        this.properties.palette = new Card().palette();
       }
 
       this.kooHandler = new KooHandler();
