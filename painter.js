@@ -1,6 +1,6 @@
 import Pen from './lib/pen';
 import Downloader from './lib/downloader';
-import KooHandler from '../../components/painter/lib/koo-handler';
+import KooHandler from './lib/koo-handler';
 
 const util = require('./lib/util');
 
