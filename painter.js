@@ -1,5 +1,7 @@
 import Pen from './lib/pen';
 import Downloader from './lib/downloader';
+import Pac from '../../palette/pac';
+import KooHandler from '../../components/painter/lib/koo-handler';
 
 const util = require('./lib/util');
 
@@ -11,6 +13,7 @@ Component({
   canvasWidthInPx: 0,
   canvasHeightInPx: 0,
   paintCount: 0,
+  kooHandler: {},
   /**
    * 组件的属性列表
    */
@@ -62,6 +65,14 @@ Component({
       if (this.isEmpty(this.properties.palette)) {
         return;
       }
+
+      if (this.properties.palette.name) {
+        const pac = new Pac();
+        this.properties.palette = pac.getPalette(this.properties.palette.name).palette();
+      }
+
+      this.kooHandler = new KooHandler();
+      this.kooHandler.init(this.properties.palette);
 
       if (!(getApp().systemInfo && getApp().systemInfo.screenWidth)) {
         try {
@@ -197,7 +208,7 @@ Component({
 
     // interaction
     onBind(e) {
-      this.triggerEvent('onEventSend', this._packEvent(e, 'bind'));
+      this.kooHandler.emit(this._packEvent(e, 'bind'));
     },
 
     _packEvent(e, mode) {
