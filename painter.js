@@ -97,7 +97,8 @@ Component({
           painterStyle: `width:${width};height:${height};`,
         });
         const ctx = wx.createCanvasContext('k-canvas', this);
-        const pen = new Pen(ctx, palette);
+        const ctxDynamic = wx.createCanvasContext('dynamic-canvas', this);
+        const pen = new Pen(ctx, ctxDynamic, palette);
         pen.paint(() => {
           this.saveImgToLocal();
         });

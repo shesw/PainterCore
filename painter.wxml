@@ -1,2 +1,6 @@
-<canvas canvas-id="k-canvas" style="{{painterStyle}}{{customStyle}}" bindtap="onBind" bindlongpress="onBind" bindtouchstart="onBind"
-  bindtouchmove="onBind" bindtouchend="onBind" />
+<view style="position:relative">
+  <canvas canvas-id="k-canvas" style="{{painterStyle}}{{customStyle}}" bindtap="onBind" bindlongpress="onBind" bindtouchstart="onBind"
+    bindtouchmove="onBind" bindtouchend="onBind" />
+    <canvas canvas-id="dynamic-canvas" style="{{painterStyle}}{{customStyle}} position:absolute;left:0;top:0" bindtap="onBind"
+    bindlongpress="onBind" bindtouchstart="onBind" bindtouchmove="onBind" bindtouchend="onBind" />
+</view>
