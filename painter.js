@@ -97,7 +97,7 @@ Component({
         const ctxDynamic = wx.createCanvasContext('dynamic-canvas', this);
         const pen = new Pen(ctx, ctxDynamic, palette);
         this.kooHandler = new KooHandler();
-        this.kooHandler.init(palette, pen);
+        this.kooHandler.init(pen);
         pen.paint(() => {
           this.saveImgToLocal();
         });
