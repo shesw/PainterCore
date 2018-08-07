@@ -70,9 +70,6 @@ Component({
         this.properties.palette = new Card().palette(this.properties.palette.data);
       }
 
-      this.kooHandler = new KooHandler();
-      this.kooHandler.init(this.properties.palette);
-
       if (!(getApp().systemInfo && getApp().systemInfo.screenWidth)) {
         try {
           getApp().systemInfo = wx.getSystemInfoSync();
@@ -99,6 +96,8 @@ Component({
         const ctx = wx.createCanvasContext('k-canvas', this);
         const ctxDynamic = wx.createCanvasContext('dynamic-canvas', this);
         const pen = new Pen(ctx, ctxDynamic, palette);
+        this.kooHandler = new KooHandler();
+        this.kooHandler.init(palette, pen);
         pen.paint(() => {
           this.saveImgToLocal();
         });
