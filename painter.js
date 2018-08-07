@@ -108,7 +108,8 @@ Component({
       return new Promise((resolve, reject) => {
         let preCount = 0;
         let completeCount = 0;
-        const paletteCopy = JSON.parse(JSON.stringify(this.properties.palette));
+        // const paletteCopy = JSON.parse(JSON.stringify(this.properties.palette));
+        const paletteCopy = this.deepClone(this.properties.palette);
         if (paletteCopy.background) {
           preCount++;
           downloader.download(paletteCopy.background).then((path) => {
@@ -161,6 +162,25 @@ Component({
           resolve(paletteCopy);
         }
       });
+    },
+
+    // 递归实现一个深拷贝，保留对象中的方法
+    deepClone(source) {
+      if (!source || typeof source !== 'object') {
+        throw new Error('error arguments', 'shallowClone');
+      }
+      const targetObj = source.constructor === Array ? [] : {};
+      for (const keys in source) {
+        if (source.hasOwnProperty(keys)) {
+          if (source[keys] && typeof source[keys] === 'object') {
+            targetObj[keys] = source[keys].constructor === Array ? [] : {};
+            targetObj[keys] = this.deepClone(source[keys]);
+          } else {
+            targetObj[keys] = source[keys];
+          }
+        }
+      }
+      return targetObj;
     },
 
     saveImgToLocal() {
