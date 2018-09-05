@@ -1,0 +1,30 @@
+{
+  "name": "koo-painter",
+  "version": "1.1.4",
+  "description": "a mina widget to generate pictures which interacts with users by json file",
+  "miniprogram": "miniprogram_dist",
+  "main": "painter.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shesw/PainterCore.git"
+  },
+  "keywords": [
+    "wechat",
+    "mina",
+    "mini-app",
+    "pictures",
+    "json"
+  ],
+  "author": "https://github.com/shesw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shesw/PainterCore/issues"
+  },
+  "homepage": "https://github.com/shesw/PainterCore#readme"
+}
